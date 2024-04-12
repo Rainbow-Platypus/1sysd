@@ -13,9 +13,15 @@ double S(double r) {
 
 int main() {
     double r;
-    printf("Enter the radius: ");
+    printf("Entrez le rayon: ");
     scanf("%lf", &r);
-    printf("Perimettre : %.2f\n", 2 * pi * r);
-    printf("Aire: %.2f\n", pi * r * r);
+    
+    if (r < 0) {
+        printf("Erreur: le rayon ne peut pas être négatif.\n");
+        return 1; // retourne une erreur
+    }
+
+    printf("Périmètre : %.2f\n", P(r));
+    printf("Aire: %.2f\n", S(r));
     return 0;
 }

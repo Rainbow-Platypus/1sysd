@@ -20,6 +20,16 @@ step *create_step(long double x, long double y) {
     return newstep;
 }
 
+void free_steps(step *head) {
+    step *tmp;
+
+    while (head != NULL) {
+        tmp = head;
+        head = head->next;
+        free(tmp);
+    }
+}
+
 void show_path(step *head) {
     step *walk = head;
     int n = 0;
@@ -37,7 +47,6 @@ step *insert_step(step *head,  long double x, long double y) {
     newstep = create_step(x, y);
 
     if (head == NULL) {
-        newstep->next = head;
         head = newstep;
     } else {
         while (walk->next != NULL) {
@@ -45,9 +54,9 @@ step *insert_step(step *head,  long double x, long double y) {
         }
         walk->next = newstep;
     }
+
     return head;
 }
-
 long double path_length(step *head) {
     step *walk = head;
     long double length = 0;
